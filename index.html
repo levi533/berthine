@@ -1,0 +1,272 @@
+<!--
+  © 2026 Armeda SABOUKOULOU Propriété exclusive de BONGO SAS.
+  Tous droits de reproduction, de modification et de distribution réservés.
+  Ce code est protégé par les lois internationales sur la propriété intellectuelle.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#103f75">
+    <meta name="description" content="Estimez vos transferts et consultez les frais avant de confirmer l'envoi.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BONGO">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>BONGO | Le partage</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <a class="nav-logo" href="/" aria-label="BONGO, accueil">BONGO</a>
+            <div class="nav-center">
+                <a href="#features">Fonctionnalités</a>
+                <a href="#about">À propos</a>
+                <a href="#reviews">Avis clients</a>
+            </div>
+            <div class="nav-right">
+                <button class="btn-nav btn-login" type="button" data-open-modal="login">Connexion</button>
+                <button class="btn-nav btn-send" type="button" data-open-modal="transfer">Envoyer</button>
+                <span id="account-status" class="account-status hidden"></span>
+                <button id="logout-button" class="btn-nav btn-login hidden" type="button" data-action="logout">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <!-- Hero Section with Live Calculator -->
+        <section class="hero">
+            <p class="hero-eyebrow">Transferts internationaux simplifiés</p>
+            <h1>BONGO le partage.</h1>
+            <p class="tagline">Estimez votre transfert, consultez les frais et confirmez uniquement lorsque les conditions vous conviennent.</p>
+            <div class="hero-flex">
+                <!-- Live Calculator -->
+                <div class="card">
+                    <h2>Estimateur de transfert</h2>
+                    <div class="form-group">
+                        <label for="source-country">Devise d'envoi</label>
+                        <select id="source-country">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dest-country">Devise de réception</label>
+                        <select id="dest-country">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="amount-label" for="amount">Montant à envoyer</label>
+                        <input type="number" id="amount" value="100" min="1" placeholder="Montant">
+                    </div>
+                    <div class="calc-result">
+                        <div class="calc-label">Destinataire reçoit</div>
+                        <div class="calc-value" id="res-receive">—</div>
+                    </div>
+                    <div class="calc-row calc-row--spaced">
+                        <div>
+                            <div class="calc-label">Frais</div>
+                            <div class="calc-value gold calc-value--detail" id="res-fees">—</div>
+                        </div>
+                        <div>
+                            <div class="calc-label">Taux</div>
+                            <div class="calc-value gold calc-value--detail" id="res-rate">—</div>
+                        </div>
+                    </div>
+                    <p class="quote-disclaimer">Taux indicatifs. Le montant définitif est confirmé par le prestataire avant tout envoi.</p>
+                    <!-- Compliance Information Display -->
+                    <div id="compliance-info" class="compliance-info hidden">
+                        <div class="compliance-content">
+                            <div>
+                                <div class="compliance-title">Information réglementaire</div>
+                                <div id="compliance-details" class="compliance-details"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-spaced" type="button" data-open-modal="transfer">Envoyer maintenant</button>
+                </div>
+                <!-- Features List -->
+                <div class="feature-column" id="about">
+                    <div class="card">
+                        <h2>Pourquoi choisir BONGO</h2>
+                        <ul class="feature-list">
+                            <li>
+                                <strong>Frais fixes jamais cachés</strong>
+                                Les frais sont affichés avant la validation.
+                            </li>
+                            <li>
+                                <strong>Estimation détaillée</strong>
+                                Consultez le taux et les frais indicatifs avant toute demande.
+                            </li>
+                            <li>
+                                <strong>Suivi transparent</strong>
+                                Consultez le statut de vos transferts depuis votre compte.
+                            </li>
+                            <li>
+                                <strong>Envoi confirmé par un prestataire</strong>
+                                Aucun paiement n'est lancé sans intégration active d'un prestataire.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Steps Section -->
+        <section class="steps" id="features">
+            <h2>3 étapes. C'est tout.</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h3>Sélectionner</h3>
+                    <p>Choisissez les devises et le montant.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h3>Confirmer</h3>
+                    <p>Vérifiez l'estimation avant confirmation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h3>Reçu</h3>
+                    <p>Suivez le statut communiqué par le prestataire.</p>
+                </div>
+            </div>
+        </section>
+        <section id="reviews" class="testimonials">
+            <h2>Avis clients</h2>
+            <p id="reviews-empty" class="reviews-empty">Les avis vérifiés et approuvés apparaîtront ici.</p>
+            <div id="approved-reviews" class="testimonials-grid"></div>
+            <button class="btn btn-secondary review-cta" type="button" data-open-modal="review">Laisser un avis après un transfert</button>
+        </section>
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Prêt à partager ?</h2>
+            <button class="btn btn-primary cta-button" type="button" data-open-modal="register">Créer un compte gratuit</button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>BONGO</h4>
+                <a href="#features">Fonctionnalités</a>
+                <a href="#about">À propos</a>
+            </div>
+            <div class="footer-col">
+                <h4>Communauté</h4>
+                <a href="#reviews">Avis clients</a>
+                <button class="footer-link" type="button" data-open-modal="register">Créer un compte</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 BONGO SAS · Le partage.
+        </div>
+    </footer>
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" data-close-modal aria-label="Fermer la fenêtre de connexion">×</button>
+            <h2 id="login-title">Connexion</h2>
+            <p>Connectez-vous avec votre numéro de téléphone et votre mot de passe.</p>
+            <form data-form="login">
+                <div class="form-group">
+                    <label for="login-phone">Téléphone</label>
+                    <input id="login-phone" type="tel" name="phone" required placeholder="+242 06 000 0000" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <input id="login-password" type="password" name="password" required autocomplete="current-password">
+                </div>
+                <p id="login-feedback" class="form-feedback hidden" role="status"></p>
+                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <p>
+                    Pas encore de compte ? <a href="#" data-switch-modal="register">Créer un compte</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="register-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" data-close-modal aria-label="Fermer la fenêtre d'inscription">×</button>
+            <h2 id="register-title">Créer un compte</h2>
+            <p>Créez un accès sécurisé pour gérer vos transferts.</p>
+            <form data-form="register">
+                <div class="form-group">
+                    <label for="register-phone">Téléphone</label>
+                    <input id="register-phone" type="tel" name="phone" required placeholder="+242 06 000 0000" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">E-mail (facultatif)</label>
+                    <input id="register-email" type="email" name="email" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Mot de passe</label>
+                    <input id="register-password" type="password" name="password" minlength="8" required autocomplete="new-password">
+                </div>
+                <p id="register-feedback" class="form-feedback hidden" role="status"></p>
+                <button type="submit" class="btn btn-primary">Créer le compte</button>
+                <p>
+                    Déjà inscrit ? <a href="#" data-switch-modal="login">Se connecter</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <div id="transfer-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="transfer-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" data-close-modal aria-label="Fermer le formulaire de transfert">×</button>
+            <h2 id="transfer-title">Préparer un transfert</h2>
+            <p id="transfer-summary">Vérifiez le montant et indiquez le bénéficiaire.</p>
+            <form data-form="transfer">
+                <input type="hidden" name="source_currency">
+                <input type="hidden" name="destination_currency">
+                <input type="hidden" name="amount">
+                <input type="hidden" name="idempotency_key">
+                <div class="form-group">
+                    <label for="recipient-name">Nom du bénéficiaire</label>
+                    <input id="recipient-name" type="text" name="recipient_name" maxlength="120" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-phone">Téléphone du bénéficiaire</label>
+                    <input id="recipient-phone" type="tel" name="recipient_phone" required placeholder="+242 06 000 0000" autocomplete="tel">
+                </div>
+                <p id="transfer-feedback" class="form-feedback hidden" role="status"></p>
+                <button type="submit" class="btn btn-primary">Confirmer l'envoi</button>
+            </form>
+        </div>
+    </div>
+    <div id="review-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" data-close-modal aria-label="Fermer le formulaire d'avis">×</button>
+            <h2 id="review-title">Votre avis</h2>
+            <p>Les avis sont publiés après vérification. Seuls les transferts terminés sont éligibles.</p>
+            <form data-form="review">
+                <div class="form-group">
+                    <label for="review-transfer">Transfert terminé</label>
+                    <select id="review-transfer" name="transfer_id" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="review-rating">Note</label>
+                    <select id="review-rating" name="rating" required>
+                        <option value="5">5 — Excellent</option>
+                        <option value="4">4 — Très bien</option>
+                        <option value="3">3 — Bien</option>
+                        <option value="2">2 — Moyen</option>
+                        <option value="1">1 — À améliorer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Commentaire</label>
+                    <textarea id="review-text" name="text" rows="4" maxlength="1000" required></textarea>
+                </div>
+                <p id="review-feedback" class="form-feedback hidden" role="status"></p>
+                <button id="review-submit-button" type="submit" class="btn btn-primary" disabled>Soumettre pour modération</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
